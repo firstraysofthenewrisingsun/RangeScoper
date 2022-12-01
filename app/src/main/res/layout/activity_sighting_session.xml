@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt" android:orientation="vertical" android:id="@+id/mainLayout" android:background="#ffffff" android:layout_width="wrap_content" android:layout_height="wrap_content">
+    <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <TextView android:textColor="#000000" android:id="@+id/sightingSessionTitleTextView" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/sightingSessionTitleText" android:layout_centerInParent="true"/>
+    </RelativeLayout>
+    <RelativeLayout android:id="@+id/targetLayout" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentTop="true">
+        <Button android:id="@+id/displayResultButton" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/displayResultButtonText" android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
+</LinearLayout>

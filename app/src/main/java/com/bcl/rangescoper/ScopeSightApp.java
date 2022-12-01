@@ -188,35 +188,21 @@ public class ScopeSightApp extends Application {
         }
         float abs = Math.abs((size - pixelDiameter) / this.f28t.getPixelDiameter());
         float abs2 = Math.abs((size2 - pixelDiameter) / this.f28t.getPixelDiameter());
-        if (!isAppImperial()) {
-            float targetDiameter = abs * activeRange.getTargetDiameter();
-            float targetDiameter2 = abs2 * activeRange.getTargetDiameter();
-            double offsetPerClick = activeScope.getOffsetPerClick();
-            double distanceToTarget = (double) activeRange.getDistanceToTarget();
-            double distanceForAdjust = activeScope.getDistanceForAdjust();
-            Double.isNaN(distanceToTarget);
-            double d = offsetPerClick * (distanceToTarget / distanceForAdjust);
-            double d2 = (double) targetDiameter;
-            Double.isNaN(d2);
-            i2 = (int) (d2 / d);
-            double d3 = (double) targetDiameter2;
-            Double.isNaN(d3);
-            i = (int) (d3 / d);
-        } else {
-            float targetDiameter3 = abs * activeRange.getTargetDiameter();
-            float targetDiameter4 = abs2 * activeRange.getTargetDiameter();
-            double offsetPerClick2 = activeScope.getOffsetPerClick();
-            double distanceToTarget2 = (double) (activeRange.getDistanceToTarget() / 3.0f);
-            double distanceForAdjust2 = activeScope.getDistanceForAdjust();
-            Double.isNaN(distanceToTarget2);
-            double d4 = offsetPerClick2 * (distanceToTarget2 / distanceForAdjust2);
-            double d5 = (double) targetDiameter3;
-            Double.isNaN(d5);
-            i2 = (int) (d5 / d4);
-            double d6 = (double) targetDiameter4;
-            Double.isNaN(d6);
-            i = (int) (d6 / d4);
-        }
+
+        float targetDiameter = abs * activeRange.getTargetDiameter();
+        float targetDiameter2 = abs2 * activeRange.getTargetDiameter();
+        double offsetPerClick = activeScope.getOffsetPerClick();
+        double distanceToTarget = (double) activeRange.getDistanceToTarget();
+        double distanceForAdjust = activeScope.getDistanceForAdjust();
+        Double.isNaN(distanceToTarget);
+        double d = offsetPerClick * (distanceToTarget / distanceForAdjust);
+        double d2 = (double) targetDiameter;
+        Double.isNaN(d2);
+        i2 = (int) (d2 / d);
+        double d3 = (double) targetDiameter2;
+        Double.isNaN(d3);
+        i = (int) (d3 / d);
+
         this.f27r = new Result(i2, i, this.horizontalRotation, this.verticalRotation);
     }
 

@@ -14,6 +14,12 @@
         android:theme="@style/Theme.RangeScoper"
         tools:targetApi="31">
         <activity
+            android:name=".SessionResultsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SightingSessionActivity"
+            android:exported="false" />
+        <activity
             android:name=".SavableScopeRangeDataActivity"
             android:exported="false" />
         <activity
