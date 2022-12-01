@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">RangeScoper</string>
+    <string name="toggleLeft">Left</string>
+    <string name="toggleRight">Right</string>
+    <string name="toggleUp">Up</string>
+    <string name="toggleDown">Down</string>
 </resources>

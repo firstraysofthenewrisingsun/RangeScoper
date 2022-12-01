@@ -128,14 +128,6 @@ public class SavableScopeRangeDataActivity extends Activity {
             }
         });
 
-        this.backButton = findViewById(R.id.btn_bck);
-        this.backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SavableScopeRangeDataActivity.this.backButtonPressed();
-            }
-        });
-
         this.scopeNameEditText = findViewById(R.id.txt_scope_name);
         this.oneClickEqualsEditText = findViewById(R.id.txt_shotplcmntchge);
         this.yardsForAdjustEditText = findViewById(R.id.txt_targetdistance);
@@ -200,13 +192,13 @@ public class SavableScopeRangeDataActivity extends Activity {
         while (it2.hasNext()) {
             arrayList2.add(it2.next().getName());
         }
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this, 17367048, arrayList);
-        arrayAdapter.setDropDownViewResource(17367049);
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, arrayList);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.rangeSpinner.setAdapter(arrayAdapter);
         this.rangeSpinner.setSelection(arrayList.indexOf(this.ssapp.getActiveRange().getName()));
         updateRangeControls();
-        ArrayAdapter arrayAdapter2 = new ArrayAdapter(this, 17367048, arrayList2);
-        arrayAdapter2.setDropDownViewResource(17367049);
+        ArrayAdapter arrayAdapter2 = new ArrayAdapter(this, android.R.layout.simple_spinner_item, arrayList2);
+        arrayAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.scopeSpinner.setAdapter(arrayAdapter2);
         this.scopeSpinner.setSelection(arrayList2.indexOf(this.ssapp.getActiveScope().getName()));
         arrayAdapter2.notifyDataSetChanged();
@@ -217,7 +209,7 @@ public class SavableScopeRangeDataActivity extends Activity {
         if (!this.scopeNameEditText.getText().toString().equals("") && !this.yardsForAdjustEditText.getText().toString().equals("") && !this.oneClickEqualsEditText.getText().toString().equals("")) {
             return true;
         }
-        Toast.makeText(getApplicationContext(), "Check Scope Inputs", 1).show();
+        Toast.makeText(getApplicationContext(), "Check Scope Inputs", Toast.LENGTH_SHORT).show();
         return false;
     }
 
@@ -225,13 +217,10 @@ public class SavableScopeRangeDataActivity extends Activity {
         if (!this.rangeNameEditText.getText().toString().equals("") && !this.feetToTargetEditText.getText().toString().equals("") && !this.targetDiameterEditText.getText().toString().equals("")) {
             return true;
         }
-        Toast.makeText(getApplicationContext(), "Check Range Inputs", 1).show();
+        Toast.makeText(getApplicationContext(), "Check Range Inputs", Toast.LENGTH_SHORT).show();
         return false;
     }
 
-    public void backButtonPressed() {
-        startActivity(new Intent(this, Home.class));
-    }
 
     public void saveScope() {
         if (validateScopeAttributes()) {
@@ -245,12 +234,12 @@ public class SavableScopeRangeDataActivity extends Activity {
                 }
             }
             if (z) {
-                Toast.makeText(getApplicationContext(), "Scope Saved", 0).show();
+                Toast.makeText(getApplicationContext(), "Scope Saved", Toast.LENGTH_SHORT).show();
                 return;
             }
             this.ssapp.updateSavables(scope);
             updateSpinners();
-            Toast.makeText(getApplicationContext(), "Scope Saved", 0).show();
+            Toast.makeText(getApplicationContext(), "Scope Saved", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -267,12 +256,12 @@ public class SavableScopeRangeDataActivity extends Activity {
                 }
             }
             if (!z) {
-                Toast.makeText(getApplicationContext(), "No scope with specified attributes exists. Reselect scope and press delete.", 0).show();
+                Toast.makeText(getApplicationContext(), "No scope with specified attributes exists. Reselect scope and press delete.", Toast.LENGTH_SHORT).show();
                 return;
             }
             this.ssapp.updateSavables(scope);
             updateSpinners();
-            Toast.makeText(getApplicationContext(), "Scope Deleted", 0).show();
+            Toast.makeText(getApplicationContext(), "Scope Deleted", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -287,13 +276,13 @@ public class SavableScopeRangeDataActivity extends Activity {
                 }
             }
             if (z) {
-                Toast.makeText(getApplicationContext(), "Range Saved", 0).show();
+                Toast.makeText(getApplicationContext(), "Range Saved", Toast.LENGTH_SHORT).show();
                 return;
             }
             this.ssapp.updateSavables(range);
             updateRangeControls();
             updateSpinners();
-            Toast.makeText(getApplicationContext(), "Range Saved", 0).show();
+            Toast.makeText(getApplicationContext(), "Range Saved", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -309,14 +298,15 @@ public class SavableScopeRangeDataActivity extends Activity {
                 }
             }
             if (!z) {
-                Toast.makeText(getApplicationContext(), "No range with specified attributes exists. Reselect range and press delete.", 0).show();
+                Toast.makeText(getApplicationContext(), "No range with specified attributes exists. Reselect range and press delete.", Toast.LENGTH_SHORT).show();
                 return;
             }
             this.ssapp.updateSavables(range);
             updateSpinners();
-            Toast.makeText(getApplicationContext(), "Range Deleted", 0).show();
+            Toast.makeText(getApplicationContext(), "Range Deleted", Toast.LENGTH_SHORT).show();
         }
 
 
 
+    }
 }
