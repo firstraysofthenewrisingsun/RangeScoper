@@ -152,10 +152,17 @@ public class ScopeSightApp extends Application {
     }
 
     public void calculate() {
+
+        //Holds results
         int i;
         int i2;
+
+        //gets current scopes and ranges
         Scope activeScope = getActiveScope();
         Range activeRange = getActiveRange();
+
+        //retrieves number of hits from generate target and adds x, y values
+        // finds pixel diameter of each hit to assist with calculation of adjustments
         ArrayList<Hit> hits = this.f28t.getHits();
         float pixelDiameter = this.f28t.getPixelDiameter() / 2.0f;
         Iterator<Hit> it = hits.iterator();
@@ -166,8 +173,14 @@ public class ScopeSightApp extends Application {
             f += next.getX();
             f2 += next.getY();
         }
+
+        //finds average of # of x points and # of y points to calculate center point of grouping.
         float size = f / ((float) hits.size());
         float size2 = f2 / ((float) hits.size());
+
+        // If y value size is less than pixel diameter & clockwise moves shot placement up, move counter clockwise.
+        // If y value size greater than pixel diameter & clockwise moves shot placement up, move clockwise.
+        // If y value less than/equal to pixel diameter & clockwise moves shot placement up, move clockwise.
         if (size2 < pixelDiameter && activeScope.getClockwiseOffsetsUp()) {
             this.verticalRotation = "counter-clockwise";
         } else if (size2 > pixelDiameter && activeScope.getClockwiseOffsetsUp()) {
@@ -177,6 +190,10 @@ public class ScopeSightApp extends Application {
         } else {
             this.verticalRotation = "counter-clockwise";
         }
+
+        // If x value is greater than pixel diameter & clockwise moves shot placement left, move clockwise.
+        // If x value is less than pixel diameter & clockwise moves shot placement left, move counter.
+        // If x value is greater than/equal to pixel diameter & clockwise moves shot placement left, move counter.
         if (size > pixelDiameter && activeScope.getClockwiseOffsetsLeft()) {
             this.horizontalRotation = "clockwise";
         } else if (size < pixelDiameter && activeScope.getClockwiseOffsetsLeft()) {
@@ -186,9 +203,13 @@ public class ScopeSightApp extends Application {
         } else {
             this.horizontalRotation = "clockwise";
         }
+
+        // Subtracts average of x & y points by pixel diameter,
+        // divides those values by current pixel diameter, then finds the absolute value of this number
         float abs = Math.abs((size - pixelDiameter) / this.f28t.getPixelDiameter());
         float abs2 = Math.abs((size2 - pixelDiameter) / this.f28t.getPixelDiameter());
 
+        //Calculates exact windage and elevation clicks using math I had to look up
         float targetDiameter = abs * activeRange.getTargetDiameter();
         float targetDiameter2 = abs2 * activeRange.getTargetDiameter();
         double offsetPerClick = activeScope.getOffsetPerClick();

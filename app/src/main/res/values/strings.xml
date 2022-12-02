@@ -4,4 +4,6 @@
     <string name="toggleRight">Right</string>
     <string name="toggleUp">Up</string>
     <string name="toggleDown">Down</string>
+    <string name="clockWise">clicks clockwise</string>
+    <string name="counterclockWise">clicks counter-clockwise</string>
 </resources>
