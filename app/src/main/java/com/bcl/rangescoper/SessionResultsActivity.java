@@ -43,7 +43,7 @@ public class SessionResultsActivity extends AppCompatActivity {
     }
 
     public void homeButtonClicked() {
-        startActivity(new Intent(this, Home.class));
+        startActivity(new Intent(this, HomeActivity.class));
     }
 
     public void newSessionButtonClicked() {

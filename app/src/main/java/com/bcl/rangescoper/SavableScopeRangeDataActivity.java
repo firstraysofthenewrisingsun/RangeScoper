@@ -1,6 +1,7 @@
 package com.bcl.rangescoper;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TableLayout;
 import android.widget.Toast;
 
 import java.text.DecimalFormat;
@@ -23,6 +25,7 @@ public class SavableScopeRangeDataActivity extends Activity {
     Button clockwiseUpToggleButton;
     Button deleteRangeButton;
     Button deleteScopeButton;
+    Button newSession;
 
     /* renamed from: df */
     DecimalFormat f26df = new DecimalFormat("@####");
@@ -41,7 +44,7 @@ public class SavableScopeRangeDataActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.ssapp = (ScopeSightApp) getApplication();
+        this.ssapp = (ScopeSightApp) getApplicationContext();
         setContentView(R.layout.activity_savable_scope_range_data);
 
         this.scopeSpinner = findViewById(R.id.spin_scope);
@@ -128,6 +131,14 @@ public class SavableScopeRangeDataActivity extends Activity {
             }
         });
 
+        this.newSession = findViewById(R.id.btn_sight_sesh);
+        this.newSession.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SavableScopeRangeDataActivity.this.backButtonPressed();
+            }
+        });
+
         this.scopeNameEditText = findViewById(R.id.txt_scope_name);
         this.oneClickEqualsEditText = findViewById(R.id.txt_shotplcmntchge);
         this.yardsForAdjustEditText = findViewById(R.id.txt_targetdistance);
@@ -136,22 +147,17 @@ public class SavableScopeRangeDataActivity extends Activity {
         this.targetDiameterEditText = findViewById(R.id.txt_target_diameter);
 
         updateSpinners();
-        setUnitLabels();
     }
 
     public void onResume() {
 
         super.onResume();
 
-        setUnitLabels();
         updateScopeControls();
         updateRangeControls();
     }
 
-    private void setUnitLabels() {
-        //Updates labels with instructional text
 
-    }
 
     public void updateScopeControls() {
 
@@ -280,6 +286,7 @@ public class SavableScopeRangeDataActivity extends Activity {
                 return;
             }
             this.ssapp.updateSavables(range);
+
             updateRangeControls();
             updateSpinners();
             Toast.makeText(getApplicationContext(), "Range Saved", Toast.LENGTH_SHORT).show();
@@ -308,5 +315,9 @@ public class SavableScopeRangeDataActivity extends Activity {
 
 
 
+    }
+
+    public void backButtonPressed() {
+        startActivity(new Intent(this, HomeActivity.class));
     }
 }

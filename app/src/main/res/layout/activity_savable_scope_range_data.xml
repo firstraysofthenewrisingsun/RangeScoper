@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SavableScopeRangeDataActivity">
@@ -10,8 +11,8 @@
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="14dp"
         android:text="Range Name:"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,17 +22,18 @@
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="50dp"
         android:text="Feet to Target:"
         android:textSize="16sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/txt_ft_to_target"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <TextView
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="6dp"
         android:text="Target diameter (in):"
         android:textSize="16sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/txt_target_diameter"
@@ -42,30 +44,30 @@
         android:layout_width="0dp"
         android:layout_height="56dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="62dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="63dp"
+        android:layout_marginTop="175dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginBottom="175dp"
         android:text="Distance shot placement is changed per increment (in):"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView8"
+        app:layout_constraintBottom_toTopOf="@+id/textView9"
         app:layout_constraintEnd_toStartOf="@+id/txt_shotplcmntchge"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btn_wind_change" />
+        app:layout_constraintTop_toTopOf="@+id/txt_scope_name" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="56dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="7dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginBottom="68dp"
         android:text="Distance to target your scope specifies for adjustment (yds):"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_save_scope"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_save_scope"
         app:layout_constraintEnd_toStartOf="@+id/txt_targetdistance"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/txt_targetdistance" />
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <Spinner
         android:id="@+id/spin_scope"
@@ -81,50 +83,48 @@
     <Button
         android:id="@+id/btn_elev_change"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="72dp"
-        android:layout_marginBottom="75dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="97dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginBottom="97dp"
         android:text="Up"
         app:layout_constraintBottom_toTopOf="@+id/txt_shotplcmntchge"
-        app:layout_constraintEnd_toEndOf="@+id/txt_shotplcmntchge"
-        app:layout_constraintStart_toStartOf="@+id/txt_shotplcmntchge"
-        app:layout_constraintTop_toTopOf="@+id/spin_scope" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView5"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btn_wind_change"
-        android:layout_width="215dp"
+        android:layout_width="0dp"
         android:layout_height="41dp"
-        android:layout_marginTop="61dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="59dp"
+        android:layout_marginTop="159dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginBottom="159dp"
         android:text="Down"
-        app:layout_constraintBottom_toBottomOf="@+id/txt_shotplcmntchge"
+        app:layout_constraintBottom_toTopOf="@+id/btn_del_scope"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toTopOf="@+id/btn_elev_change"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/txt_shotplcmntchge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="157dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="156dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="ex. 0.5, 1.0 "
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="@+id/spin_range"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView7"
-        app:layout_constraintTop_toTopOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_wind_change" />
 
     <EditText
         android:id="@+id/txt_targetdistance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="ex. 100"
         android:inputType="textPersonName"
@@ -136,116 +136,120 @@
         android:id="@+id/btn_save_scope"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginBottom="11dp"
         android:text="Save Scope"
         app:layout_constraintBottom_toTopOf="@+id/spin_range"
-        app:layout_constraintStart_toStartOf="@+id/spin_range" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btn_del_scope"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="14dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginBottom="11dp"
         android:text="Delete Scope"
         app:layout_constraintBottom_toTopOf="@+id/spin_range"
-        app:layout_constraintEnd_toEndOf="@+id/spin_range" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Spinner
         android:id="@+id/spin_range"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="312dp"
         android:layout_marginEnd="1dp"
-        android:layout_marginBottom="312dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="17dp"
+        app:layout_constraintBottom_toTopOf="@+id/txt_range_name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/txt_range_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="13dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spin_range" />
+        app:layout_constraintBottom_toTopOf="@+id/txt_ft_to_target"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
         android:id="@+id/txt_ft_to_target"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="169dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_range_name" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
         android:id="@+id/txt_target_diameter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/btn_del_range"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_ft_to_target" />
 
     <Button
         android:id="@+id/btn_save_range"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="9dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="5dp"
         android:text="Save Range"
-        app:layout_constraintBottom_toTopOf="@+id/btn_sight_sesh"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_sight_sesh"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btn_del_range"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="9dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginBottom="5dp"
         android:text="Delete Range"
-        app:layout_constraintBottom_toTopOf="@+id/btn_sight_sesh"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_sight_sesh" />
 
     <EditText
         android:id="@+id/txt_scope_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="15dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/btn_elev_change"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView5" />
+        app:layout_constraintBottom_toTopOf="@+id/textView5"
+        app:layout_constraintEnd_toEndOf="@+id/btn_elev_change"
+        app:layout_constraintStart_toStartOf="@+id/btn_elev_change"
+        app:layout_constraintTop_toBottomOf="@+id/spin_scope" />
 
     <Button
         android:id="@+id/btn_sight_sesh"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="7dp"
-        android:text="New Sighting Session"
+        android:layout_marginBottom="5dp"
+        android:text="Home"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/btn_del_range"
+        app:layout_constraintStart_toEndOf="@+id/btn_save_range" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="11dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="7dp"
         android:text="Scope Name"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/textView5"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spin_scope" />
 
     <TextView
@@ -253,28 +257,28 @@
         android:layout_width="0dp"
         android:layout_height="56dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="89dp"
         android:layout_marginEnd="31dp"
-        android:layout_marginBottom="69dp"
+        android:layout_marginBottom="90dp"
         android:text="1 elevation increment clockwise moves shot placement:"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView7"
-        app:layout_constraintEnd_toStartOf="@+id/txt_scope_name"
+        app:layout_constraintBottom_toTopOf="@+id/txt_shotplcmntchge"
+        app:layout_constraintEnd_toStartOf="@+id/btn_elev_change"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/spin_scope" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="0dp"
         android:layout_height="56dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="63dp"
-        android:layout_marginEnd="31dp"
-        android:layout_marginBottom="62dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="34dp"
+        android:layout_marginBottom="20dp"
         android:text="1 windage increment clockwise moves shot placement:"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView7"
+        app:layout_constraintBottom_toTopOf="@+id/txt_shotplcmntchge"
         app:layout_constraintEnd_toStartOf="@+id/btn_wind_change"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_elev_change" />
 </androidx.constraintlayout.widget.ConstraintLayout>

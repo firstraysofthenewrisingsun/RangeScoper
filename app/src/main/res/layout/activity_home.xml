@@ -1,11 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt" android:id="@+id/mainTableLayout" android:background="#ffffff" android:layout_width="match_parent" android:layout_height="match_parent" android:stretchColumns="*" android:shrinkColumns="*">
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainTableLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:shrinkColumns="*"
+    android:stretchColumns="*">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"/>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"/>
 
     <TableRow>
-        <Button android:id="@+id/scopeAndRangeManagerButton" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_span="2" android:text="@string/scopeAndRangeManagerButtonText"/>
+
+        <Button
+            android:id="@+id/scopeAndRangeManagerButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_span="2"
+            android:text="Scope and Range Manager" />
     </TableRow>
 
-    <TableRow android:background="@android:color/transparent" android:paddingTop="35dp">
-        <Button android:id="@+id/newSessionButton" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_span="2" android:text="@string/newSessionButtonText"/>
+    <TableRow android:paddingTop="35dp">
+
+        <TextView
+            android:id="@+id/scopesTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:text="Scopes:"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <Spinner
+            android:id="@+id/scopeSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5" />
     </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/rangesTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Ranges:"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <Spinner
+            android:id="@+id/rangeSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5" />
+    </TableRow>
+
+    <TableRow
+        android:background="@android:color/transparent"
+        android:paddingTop="35dp">
+
+        <Button
+            android:id="@+id/newSessionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_span="2"
+            android:text="New Session" />
+    </TableRow>
+
+    <TableRow android:background="@android:color/transparent"/>
 </TableLayout>

@@ -4,6 +4,7 @@
     package="com.bcl.rangescoper">
 
     <application
+        android:name=".ScopeSightApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -14,14 +15,8 @@
         android:theme="@style/Theme.RangeScoper"
         tools:targetApi="31">
         <activity
-            android:name=".SessionResultsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".SightingSessionActivity"
-            android:exported="false" />
-        <activity
-            android:name=".SavableScopeRangeDataActivity"
-            android:exported="true" >
+            android:name=".HomeActivity"
+            android:exported="true">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,11 +25,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Home"
+            android:name=".SessionResultsActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".SightingSessionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SavableScopeRangeDataActivity"
+            android:exported="false">
 
         </activity>
     </application>
