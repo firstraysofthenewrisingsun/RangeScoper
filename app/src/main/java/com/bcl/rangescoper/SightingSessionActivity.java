@@ -4,7 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +18,7 @@ public class SightingSessionActivity extends Activity {
 
     private float diameter;
     private Button dispResultButton;
+    private Button cameraButton;
     private float screenHeight;
     private float screenWidth;
     private ScopeSightApp ssapp;
@@ -31,12 +36,25 @@ public class SightingSessionActivity extends Activity {
         this.ssapp = (ScopeSightApp) getApplication();
         this.targetLayout = (RelativeLayout) findViewById(R.id.targetLayout);
         this.f30t = this.ssapp.getTarget();
+
         this.dispResultButton = (Button) findViewById(R.id.displayResultButton);
         this.dispResultButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 SightingSessionActivity.this.dispResultButtonClicked();
             }
         });
+
+        this.cameraButton = findViewById(R.id.camerabutton);
+        this.cameraButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(cameraIntent, 100);
+
+            }
+        });
+
         this.screenWidth = this.ssapp.getDeviceWidth();
         this.screenHeight = this.ssapp.getDeviceHeight();
         if (this.screenWidth < this.screenHeight) {
@@ -67,5 +85,16 @@ public class SightingSessionActivity extends Activity {
         this.ssapp.setTarget(this.f30t);
         this.ssapp.calculate();
         startActivity(new Intent(this, SessionResultsActivity.class));
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 100){
+            Bitmap cameraBitmap = (Bitmap) data.getExtras().get("data");
+            Drawable cameraDrawable = new BitmapDrawable(getResources(), cameraBitmap);
+            this.targetView.setBackground(cameraDrawable);
+        }
     }
 }
