@@ -50,15 +50,16 @@ public class TargetView extends View {
 
     public TargetView(float f, float f2, float f3, Context context) {
         super(context);
-        int color = ContextCompat.getColor(context, R.color.black);
+        int color = ContextCompat.getColor(context, R.color.gray_400);
+        int bullseyeColor = ContextCompat.getColor(context, R.color.purple_200);
         int hitColor = ContextCompat.getColor(context, R.color.light_blue_400);
         this.f31x = f2;
         this.f32y = f3;
         this.ringIncrement = f / 6.0f;
         this.ringsPaint.setColor(color);
         this.ringsPaint.setStyle(Paint.Style.STROKE);
-        this.bullsEyePaint.setColor(color);
-        this.bullsEyePaint.setStyle(Paint.Style.FILL);
+        this.bullsEyePaint.setColor(bullseyeColor);
+        this.bullsEyePaint.setStyle(Paint.Style.STROKE);
         this.hitPaint.setColor(hitColor);
         this.hitPaint.setStyle(Paint.Style.FILL);
     }
@@ -68,6 +69,7 @@ public class TargetView extends View {
         canvas.drawCircle(this.f31x, this.f32y, this.ringIncrement * 3.0f, this.ringsPaint);
         canvas.drawCircle(this.f31x, this.f32y, this.ringIncrement * 2.0f, this.ringsPaint);
         canvas.drawCircle(this.f31x, this.f32y, this.ringIncrement, this.bullsEyePaint);
+
         Iterator<Hit> it = this.hits.iterator();
         while (it.hasNext()) {
             Hit next = it.next();
@@ -78,4 +80,7 @@ public class TargetView extends View {
     public void addHit(float f, float f2) {
         this.hits.add(new Hit(f, f2));
     }
+
+
+
 }

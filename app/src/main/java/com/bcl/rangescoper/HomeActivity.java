@@ -1,6 +1,7 @@
 package com.bcl.rangescoper;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Context;
 import android.content.Intent;
@@ -83,7 +84,7 @@ public class HomeActivity extends AppCompatActivity {
 
     public void launchNewSession() {
         if (!this.ssapp.getActiveScope().getName().equals("Add a Scope") && !this.ssapp.getActiveRange().getName().equals("Add a Range")) {
-            TableLayout tableLayout = (TableLayout) findViewById(R.id.mainTableLayout);
+            ConstraintLayout tableLayout = (ConstraintLayout) findViewById(R.id.mainTableLayout);
             this.ssapp.setDeviceWidth(tableLayout.getWidth());
             this.ssapp.setDeviceHeight(tableLayout.getHeight());
             this.ssapp.setTarget(new Target());

@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.bcl.rangescoper">
 
+    <uses-permission android:name="android.permission.CAMERA"/>
+
     <application
         android:name=".ScopeSightApp"
         android:allowBackup="true"
