@@ -17,6 +17,7 @@ import android.provider.MediaStore;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 public class SightingSessionActivity extends Activity {
@@ -24,9 +25,11 @@ public class SightingSessionActivity extends Activity {
     private float diameter;
     private Button dispResultButton;
     private Button cameraButton;
+    private Button homeButton;
     private float screenHeight;
     private float screenWidth;
     private ScopeSightApp ssapp;
+    private ImageView cameraImage;
 
     public Target f30t;
     private ConstraintLayout targetLayout;
@@ -41,6 +44,7 @@ public class SightingSessionActivity extends Activity {
         this.ssapp = (ScopeSightApp) getApplication();
         this.targetLayout = (ConstraintLayout) findViewById(R.id.targetLayout);
         this.f30t = this.ssapp.getTarget();
+        this.cameraImage = findViewById(R.id.cameraImage);
 
         this.dispResultButton = (Button) findViewById(R.id.displayResultButton);
         this.dispResultButton.setOnClickListener(new View.OnClickListener() {
@@ -68,14 +72,21 @@ public class SightingSessionActivity extends Activity {
             }
         });
 
-        this.screenWidth = this.ssapp.getDeviceWidth();
-        this.screenHeight = this.ssapp.getDeviceHeight();
-        if (this.screenWidth < this.screenHeight) {
-            this.diameter = this.screenWidth;
-        } else {
-            this.diameter = this.screenHeight;
-        }
-        this.targetView = new TargetView(this.diameter, this.screenWidth / 2.0f, this.screenWidth / 2.0f, this);
+        this.homeButton = findViewById(R.id.btn_hme2);
+        this.homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SightingSessionActivity.this.homeButtonClicked();
+            }
+        });
+
+        this.screenWidth = 700;
+        this.screenHeight = 700;
+
+        this.diameter = this.screenWidth ;
+
+
+        this.targetView = new TargetView(this.diameter, this.screenWidth / 2.0f, this.screenHeight / 2.0f, this);
         this.targetView.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 if (motionEvent.getActionMasked() != 0) {
@@ -87,6 +98,7 @@ public class SightingSessionActivity extends Activity {
                 return true;
             }
         });
+
         this.f30t.setCenterX(this.screenWidth / 2.0f);
         this.f30t.setCenterY((float) (this.targetLayout.getHeight() / 2));
         this.f30t.setPixelDiameter(this.diameter);
@@ -100,6 +112,11 @@ public class SightingSessionActivity extends Activity {
         startActivity(new Intent(this, SessionResultsActivity.class));
     }
 
+    public void homeButtonClicked() {
+        startActivity(new Intent(this, HomeActivity.class));
+    }
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -107,7 +124,9 @@ public class SightingSessionActivity extends Activity {
         if (requestCode == 100){
             Bitmap cameraBitmap = (Bitmap) data.getExtras().get("data");
             Drawable cameraDrawable = new BitmapDrawable(getResources(), cameraBitmap);
-            this.targetView.setBackground(cameraDrawable);
+
+            this.cameraImage.setImageDrawable(cameraDrawable);
+            //this.targetView.setBackground(cameraDrawable);
         }
     }
 }

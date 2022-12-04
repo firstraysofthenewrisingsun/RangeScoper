@@ -244,6 +244,8 @@ public class SavableScopeRangeDataActivity extends Activity {
                 return;
             }
             this.ssapp.updateSavables(scope);
+
+            updateScopeControls();
             updateSpinners();
             Toast.makeText(getApplicationContext(), "Scope Saved", Toast.LENGTH_SHORT).show();
         }

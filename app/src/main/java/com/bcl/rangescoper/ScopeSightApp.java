@@ -147,8 +147,8 @@ public class ScopeSightApp extends Application {
         return arrayList;
     }
 
-    public void setUnitsMetric() {
-        convertSavablesToMetric();
+    public void setUnitsImperial() {
+        convertSavablesToImperial();
     }
 
     public void calculate() {
@@ -161,7 +161,7 @@ public class ScopeSightApp extends Application {
         Scope activeScope = getActiveScope();
         Range activeRange = getActiveRange();
 
-        //retrieves number of hits from generate target and adds x, y values
+        //retrieves number of hits from generated target and adds x, y values
         // finds pixel diameter of each hit to assist with calculation of adjustments
         ArrayList<Hit> hits = this.f28t.getHits();
         float pixelDiameter = this.f28t.getPixelDiameter() / 2.0f;
@@ -402,20 +402,20 @@ public class ScopeSightApp extends Application {
         }
     }
 
-    public void convertSavablesToMetric() {
+    public void convertSavablesToImperial() {
         Iterator<Savable> it = this.savables.iterator();
         while (it.hasNext()) {
             Savable next = it.next();
             if (next instanceof Range) {
                 Range range = (Range) next;
-                range.setDistanceToTarget(range.getDistanceToTarget() * 0.3048f);
-                range.setTargetDiameter(range.getTargetDiameter() * 2.54f);
+                range.setDistanceToTarget(range.getDistanceToTarget() / 0.3048f);
+                range.setTargetDiameter(range.getTargetDiameter() / 2.54f);
             } else if (next instanceof UnitStatus) {
-                ((UnitStatus) next).setUnitsMetric();
+                ((UnitStatus) next).setUnitsImperial();
             } else {
                 Scope scope = (Scope) next;
-                scope.setOffsetPerClick(scope.getOffsetPerClick() * 2.54d);
-                scope.setDistanceForAdjust(scope.getDistanceForAdjust() * 0.9144d);
+                scope.setOffsetPerClick(scope.getOffsetPerClick() / 2.54d);
+                scope.setDistanceForAdjust(scope.getDistanceForAdjust() / 0.9144d);
             }
         }
         writeSavables();
