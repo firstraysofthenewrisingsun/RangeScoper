@@ -1,9 +1,14 @@
 package com.bcl.rangescoper;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -24,7 +29,7 @@ public class SightingSessionActivity extends Activity {
     private ScopeSightApp ssapp;
 
     public Target f30t;
-    private RelativeLayout targetLayout;
+    private ConstraintLayout targetLayout;
     public TargetView targetView;
 
     @Override
@@ -34,7 +39,7 @@ public class SightingSessionActivity extends Activity {
 
         this.targetView = new TargetView(this);
         this.ssapp = (ScopeSightApp) getApplication();
-        this.targetLayout = (RelativeLayout) findViewById(R.id.targetLayout);
+        this.targetLayout = (ConstraintLayout) findViewById(R.id.targetLayout);
         this.f30t = this.ssapp.getTarget();
 
         this.dispResultButton = (Button) findViewById(R.id.displayResultButton);
@@ -43,6 +48,14 @@ public class SightingSessionActivity extends Activity {
                 SightingSessionActivity.this.dispResultButtonClicked();
             }
         });
+
+        if (ContextCompat.checkSelfPermission(SightingSessionActivity.this, Manifest.permission.CAMERA)
+            != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(SightingSessionActivity.this, new String[]{
+                    Manifest.permission.CAMERA
+            }, 100);
+
+        }
 
         this.cameraButton = findViewById(R.id.camerabutton);
         this.cameraButton.setOnClickListener(new View.OnClickListener() {
